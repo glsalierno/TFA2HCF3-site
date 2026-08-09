@@ -12,7 +12,13 @@
   header p { margin:0; opacity:.92; font-size:.92rem; }
   main { padding:1rem; }
   .note { color:var(--muted); max-width:52rem; margin:.25rem 0 1rem; }
-  .viewer-wrap { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.5rem; display:inline-block; max-width:100%; }
+  .viewer-wrap { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.5rem; display:block; max-width:100%; overflow-x:auto; }
+  .solv-grid { display:grid; grid-template-columns:repeat(4, minmax(200px, 1fr)); gap:1rem; align-items:stretch; }
+  .solv-cell { background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; padding:.25rem; display:flex; justify-content:center; }
+  .solv-cell > div { max-width:100%; }
+  @media (max-width: 900px) {
+    .solv-grid { grid-template-columns:repeat(2, minmax(180px, 1fr)); }
+  }
   .hint { font-size:.88rem; color:var(--muted); margin-top:.75rem; }
 </style>
 </head>
@@ -24,8 +30,8 @@
 <main>
   <p class="note">Red dashed segments on the TS mark concerted breaking C–C / O–H and forming C–H.</p>
   <div class="viewer-wrap">
-  <div id="3dmolviewer_178628302252387"  style="position: relative; width: 980px; height: 420px;">
-        <p id="3dmolwarning_178628302252387" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
+  <div id="3dmolviewer_17862842012905493"  style="position: relative; width: 980px; height: 420px;">
+        <p id="3dmolwarning_17862842012905493" style="background-color:#ffcccc;color:black">3Dmol.js failed to load for some reason.  Please check your browser console for error messages.<br></p>
         </div>
 <script>
 
@@ -56,42 +62,42 @@ $3Dmolpromise = null;
   $3Dmolpromise = loadScriptAsync('https://cdn.jsdelivr.net/npm/3dmol@2.5.4/build/3Dmol-min.js');
 }
 
-var viewer_178628302252387 = null;
-var warn = document.getElementById("3dmolwarning_178628302252387");
+var viewer_17862842012905493 = null;
+var warn = document.getElementById("3dmolwarning_17862842012905493");
 if(warn) {
     warn.parentNode.removeChild(warn);
 }
 $3Dmolpromise.then(function() {
-viewer_178628302252387 = $3Dmol.createViewer(document.getElementById("3dmolviewer_178628302252387"),{backgroundColor:"white"});
-viewer_178628302252387.zoomTo();
-	viewer_178628302252387.setBackgroundColor("white");
-	viewer_178628302252387.addModel("8\nCF\u2083COOH\nC     -7.0084262473     0.7093496519     0.3359913554\nC     -5.9471622547    -0.2503090421    -0.2504628692\nO     -4.8423069411     0.0947345749    -0.5563953456\nO     -6.4517473524    -1.4780607192    -0.3498159703\nH     -5.7654340940    -2.0616777784    -0.7202024187\nF     -6.5180892303     1.9427004132     0.4161795129\nF     -7.3677307898     0.3117956639     1.5623857734\nF     -8.0991030904     0.7314672357    -0.4376800379","xyz");
-	viewer_178628302252387.setStyle({"model": -1},{"stick": {"radius": 0.12, "colorscheme": "Jmol"}, "sphere": {"scale": 0.22, "colorscheme": "Jmol"}});
-	viewer_178628302252387.addLabel("CF\u2083COOH",{"position": {"x": -6.500000000000002, "y": 2.5, "z": -2.0816681711721685e-17}, "backgroundColor": "0x143d2b", "fontColor": "white", "fontSize": 14, "showBackground": true});
-	viewer_178628302252387.addModel("8\nTS\nC     -0.4681542778     0.6545837779    -0.2518236756\nC      0.5061066739    -1.1274029822     0.4582271949\nO     -0.2619771068    -1.8845113789     0.8768467882\nO      1.6708455963    -0.7681291051     0.1796972466\nH      0.9999083551     0.1393668993    -0.1752632724\nF      0.0409194908     1.7698069743    -0.8596398040\nF     -1.1037090363     1.0750648749     0.8556732037\nF     -1.3839396952     0.1412209398    -1.0837176815","xyz");
-	viewer_178628302252387.setStyle({"model": -1},{"stick": {"radius": 0.12, "colorscheme": "Jmol"}, "sphere": {"scale": 0.22, "colorscheme": "Jmol"}});
-	viewer_178628302252387.addCylinder({"start": {"x": -0.4681542778277562, "y": 0.6545837778906299, "z": -0.25182367555575125}, "end": {"x": -0.3599030609660817, "y": 0.4565852489908155, "z": -0.1729291343972868}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": -0.25165184410440733, "y": 0.25858672009100103, "z": -0.09403459323882238}, "end": {"x": -0.1434006272427329, "y": 0.06058819119118669, "z": -0.01514005208035793}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": -0.0351494103810584, "y": -0.13741033770862782, "z": 0.06375448907810652}, "end": {"x": 0.0731018064806161, "y": -0.3354088666084423, "z": 0.14264903023657097}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 0.18135302334229048, "y": -0.5334073955082567, "z": 0.2215435713950354}, "end": {"x": 0.289604240203965, "y": -0.7314059244080712, "z": 0.30043811255349984}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 0.3978554570656394, "y": -0.9294044533078856, "z": 0.3793326537119643}, "end": {"x": 0.5061066739273139, "y": -1.1274029822077, "z": 0.45822719487042873}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 1.6708455963104438, "y": -0.7681291051273801, "z": 0.17969724663174877}, "end": {"x": 1.5962970139554904, "y": -0.6672962157414145, "z": 0.14025718896010433}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 1.5217484316005372, "y": -0.5664633263554489, "z": 0.10081713128845987}, "end": {"x": 1.447199849245584, "y": -0.4656304369694835, "z": 0.06137707361681546}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 1.3726512668906306, "y": -0.36479754758351784, "z": 0.021937015945171}, "end": {"x": 1.2981026845356771, "y": -0.26396465819755227, "z": -0.01750304172647346}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 1.223554102180724, "y": -0.16313176881158678, "z": -0.05694309939811788}, "end": {"x": 1.1490055198257705, "y": -0.062298879425621165, "z": -0.09638315706976233}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 1.0744569374708173, "y": 0.03853400996034434, "z": -0.13582321474140677}, "end": {"x": 0.9999083551158638, "y": 0.13936689934630994, "z": -0.17526327241305123}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": -0.4681542778277562, "y": 0.6545837778906299, "z": -0.25182367555575125}, "end": {"x": -0.3050362075006873, "y": 0.5973374580523721, "z": -0.24331696409545123}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": -0.14191813717361842, "y": 0.5400911382141144, "z": -0.23481025263515126}, "end": {"x": 0.021199933153450423, "y": 0.4828448183758567, "z": -0.22630354117485124}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 0.18431800348051935, "y": 0.42559849853759885, "z": -0.21779682971455122}, "end": {"x": 0.34743607380758834, "y": 0.36835217869934106, "z": -0.20929011825425126}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 0.510554144134657, "y": 0.31110585886108333, "z": -0.20078340679395124}, "end": {"x": 0.673672214461726, "y": 0.2538595390228255, "z": -0.19227669533365122}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addCylinder({"start": {"x": 0.8367902847887949, "y": 0.19661321918456776, "z": -0.18376998387335122}, "end": {"x": 0.9999083551158638, "y": 0.13936689934630994, "z": -0.17526327241305123}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
-	viewer_178628302252387.addLabel("TS",{"position": {"x": 2.7755575615628914e-17, "y": 2.5, "z": 0.0}, "backgroundColor": "0x143d2b", "fontColor": "white", "fontSize": 14, "showBackground": true});
-	viewer_178628302252387.addModel("8\nCF\u2083H + CO\u2082\nC      5.6354411053     0.8613405138     0.5116357180\nC      7.8528615720    -1.4305546018    -0.7965077909\nO      7.1151123169    -2.3538090791    -0.7690300991\nO      8.5978507159    -0.4695741691    -0.8274404817\nH      4.7398585354     1.3457921374     0.8938213156\nF      6.5484086537     1.7970327884     0.3463421995\nF      6.1246814575    -0.0743129343     1.3348751801\nF      5.3857856433     0.3240853447    -0.6936960414","xyz");
-	viewer_178628302252387.setStyle({"model": -1},{"stick": {"radius": 0.12, "colorscheme": "Jmol"}, "sphere": {"scale": 0.22, "colorscheme": "Jmol"}});
-	viewer_178628302252387.addLabel("CF\u2083H + CO\u2082",{"position": {"x": 6.500000000000001, "y": 2.5, "z": -5.551115123125783e-17}, "backgroundColor": "0x143d2b", "fontColor": "white", "fontSize": 14, "showBackground": true});
-	viewer_178628302252387.zoomTo();
-	viewer_178628302252387.zoom(0.88);
-viewer_178628302252387.render();
+viewer_17862842012905493 = $3Dmol.createViewer(document.getElementById("3dmolviewer_17862842012905493"),{backgroundColor:"white"});
+viewer_17862842012905493.zoomTo();
+	viewer_17862842012905493.setBackgroundColor("white");
+	viewer_17862842012905493.addModel("8\nCF\u2083COOH\nC     -7.0084262473     0.7093496519     0.3359913554\nC     -5.9471622547    -0.2503090421    -0.2504628692\nO     -4.8423069411     0.0947345749    -0.5563953456\nO     -6.4517473524    -1.4780607192    -0.3498159703\nH     -5.7654340940    -2.0616777784    -0.7202024187\nF     -6.5180892303     1.9427004132     0.4161795129\nF     -7.3677307898     0.3117956639     1.5623857734\nF     -8.0991030904     0.7314672357    -0.4376800379","xyz");
+	viewer_17862842012905493.setStyle({"model": -1},{"stick": {"radius": 0.12, "colorscheme": "Jmol"}, "sphere": {"scale": 0.22, "colorscheme": "Jmol"}});
+	viewer_17862842012905493.addLabel("CF\u2083COOH",{"position": {"x": -6.500000000000002, "y": 2.5, "z": -2.0816681711721685e-17}, "backgroundColor": "0x143d2b", "fontColor": "white", "fontSize": 14, "showBackground": true});
+	viewer_17862842012905493.addModel("8\nTS\nC     -0.4681542778     0.6545837779    -0.2518236756\nC      0.5061066739    -1.1274029822     0.4582271949\nO     -0.2619771068    -1.8845113789     0.8768467882\nO      1.6708455963    -0.7681291051     0.1796972466\nH      0.9999083551     0.1393668993    -0.1752632724\nF      0.0409194908     1.7698069743    -0.8596398040\nF     -1.1037090363     1.0750648749     0.8556732037\nF     -1.3839396952     0.1412209398    -1.0837176815","xyz");
+	viewer_17862842012905493.setStyle({"model": -1},{"stick": {"radius": 0.12, "colorscheme": "Jmol"}, "sphere": {"scale": 0.22, "colorscheme": "Jmol"}});
+	viewer_17862842012905493.addCylinder({"start": {"x": -0.4681542778277562, "y": 0.6545837778906299, "z": -0.25182367555575125}, "end": {"x": -0.3599030609660817, "y": 0.4565852489908155, "z": -0.1729291343972868}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": -0.25165184410440733, "y": 0.25858672009100103, "z": -0.09403459323882238}, "end": {"x": -0.1434006272427329, "y": 0.06058819119118669, "z": -0.01514005208035793}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": -0.0351494103810584, "y": -0.13741033770862782, "z": 0.06375448907810652}, "end": {"x": 0.0731018064806161, "y": -0.3354088666084423, "z": 0.14264903023657097}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 0.18135302334229048, "y": -0.5334073955082567, "z": 0.2215435713950354}, "end": {"x": 0.289604240203965, "y": -0.7314059244080712, "z": 0.30043811255349984}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 0.3978554570656394, "y": -0.9294044533078856, "z": 0.3793326537119643}, "end": {"x": 0.5061066739273139, "y": -1.1274029822077, "z": 0.45822719487042873}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 1.6708455963104438, "y": -0.7681291051273801, "z": 0.17969724663174877}, "end": {"x": 1.5962970139554904, "y": -0.6672962157414145, "z": 0.14025718896010433}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 1.5217484316005372, "y": -0.5664633263554489, "z": 0.10081713128845987}, "end": {"x": 1.447199849245584, "y": -0.4656304369694835, "z": 0.06137707361681546}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 1.3726512668906306, "y": -0.36479754758351784, "z": 0.021937015945171}, "end": {"x": 1.2981026845356771, "y": -0.26396465819755227, "z": -0.01750304172647346}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 1.223554102180724, "y": -0.16313176881158678, "z": -0.05694309939811788}, "end": {"x": 1.1490055198257705, "y": -0.062298879425621165, "z": -0.09638315706976233}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 1.0744569374708173, "y": 0.03853400996034434, "z": -0.13582321474140677}, "end": {"x": 0.9999083551158638, "y": 0.13936689934630994, "z": -0.17526327241305123}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": -0.4681542778277562, "y": 0.6545837778906299, "z": -0.25182367555575125}, "end": {"x": -0.3050362075006873, "y": 0.5973374580523721, "z": -0.24331696409545123}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": -0.14191813717361842, "y": 0.5400911382141144, "z": -0.23481025263515126}, "end": {"x": 0.021199933153450423, "y": 0.4828448183758567, "z": -0.22630354117485124}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 0.18431800348051935, "y": 0.42559849853759885, "z": -0.21779682971455122}, "end": {"x": 0.34743607380758834, "y": 0.36835217869934106, "z": -0.20929011825425126}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 0.510554144134657, "y": 0.31110585886108333, "z": -0.20078340679395124}, "end": {"x": 0.673672214461726, "y": 0.2538595390228255, "z": -0.19227669533365122}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addCylinder({"start": {"x": 0.8367902847887949, "y": 0.19661321918456776, "z": -0.18376998387335122}, "end": {"x": 0.9999083551158638, "y": 0.13936689934630994, "z": -0.17526327241305123}, "radius": 0.06, "color": "0xC0392B", "fromCap": true, "toCap": true});
+	viewer_17862842012905493.addLabel("TS",{"position": {"x": 2.7755575615628914e-17, "y": 2.5, "z": 0.0}, "backgroundColor": "0x143d2b", "fontColor": "white", "fontSize": 14, "showBackground": true});
+	viewer_17862842012905493.addModel("8\nCF\u2083H + CO\u2082\nC      5.6354411053     0.8613405138     0.5116357180\nC      7.8528615720    -1.4305546018    -0.7965077909\nO      7.1151123169    -2.3538090791    -0.7690300991\nO      8.5978507159    -0.4695741691    -0.8274404817\nH      4.7398585354     1.3457921374     0.8938213156\nF      6.5484086537     1.7970327884     0.3463421995\nF      6.1246814575    -0.0743129343     1.3348751801\nF      5.3857856433     0.3240853447    -0.6936960414","xyz");
+	viewer_17862842012905493.setStyle({"model": -1},{"stick": {"radius": 0.12, "colorscheme": "Jmol"}, "sphere": {"scale": 0.22, "colorscheme": "Jmol"}});
+	viewer_17862842012905493.addLabel("CF\u2083H + CO\u2082",{"position": {"x": 6.500000000000001, "y": 2.5, "z": -5.551115123125783e-17}, "backgroundColor": "0x143d2b", "fontColor": "white", "fontSize": 14, "showBackground": true});
+	viewer_17862842012905493.zoomTo();
+	viewer_17862842012905493.zoom(0.88);
+viewer_17862842012905493.render();
 });
 </script>
   </div>
