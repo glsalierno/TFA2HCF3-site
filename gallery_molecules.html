@@ -1,57 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TFA2HCF3 — interactive molecules</title>
-<style>
-  :root { --bg:#f7f4ef; --ink:#1a1a1a; --muted:#555; --card:#fff; --line:#ddd; --accent:#143d2b; }
-  body { margin:0; font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--ink); }
-  header { background:var(--accent); color:#fff; padding:1rem 1.25rem; }
-  header h1 { margin:0 0 .35rem; font-size:1.3rem; }
-  header p { margin:0; opacity:.92; }
-  .tabs { display:flex; gap:.4rem; flex-wrap:wrap; padding:.75rem 1rem 0; }
-  .tab { border:1px solid var(--line); background:#fff; padding:.45rem .9rem; border-radius:999px; cursor:pointer; font-size:.92rem; }
-  .tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
-  .panel { display:none; padding:.75rem 1rem 1.25rem; }
-  .panel.active { display:block; }
-  iframe { width:100%; min-height:560px; border:1px solid var(--line); border-radius:10px; background:#fff; }
-  .note { color:var(--muted); max-width:50rem; padding:0 1rem; }
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TFA₂HCF₃ — Interactive Molecular Gallery</title>
+  <meta name="description" content="Interactive 3Dmol.js gallery of TFA₂HCF₃ reaction stages, solvation shells, and hydrogen-bond networks from the Salierno Lab computational chemistry study."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="gallery.css"/>
 </head>
 <body>
-<header>
-  <h1>TFA2HCF3 — interactive molecular gallery</h1>
-  <p>3Dmol.js ball-and-stick (not matplotlib) · rotate / zoom in the browser</p>
-</header>
-<p class="note">
-  PyMOL / VMD / OVITO are great for desktop ray-tracing but are not available in this
-  shareable snapshot and cannot embed as rotatable widgets on GitHub.
-  These pages use the same WebGL stick+sphere style as the PES molecule explorer.
-</p>
-<div class="tabs">
-  <button class="tab active" data-tab="stages">Reaction stages</button>
-  <button class="tab" data-tab="solv">Solvation sizes</button>
-  <button class="tab" data-tab="hbond">H-bonds (15w)</button>
-</div>
-<section id="stages" class="panel active">
-  <iframe src="molecule_viewer_stages.html" title="Reaction stages"></iframe>
-</section>
-<section id="solv" class="panel">
-  <iframe src="molecule_viewer_solvation.html" title="Solvation sizes"></iframe>
-</section>
-<section id="hbond" class="panel">
-  <iframe src="molecule_viewer_hbond.html" title="H-bond cluster"></iframe>
-</section>
-<script>
-document.querySelectorAll('.tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-});
-</script>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">🧪</span>
+      <h1>TFA₂HCF₃ Project</h1>
+    </div>
+    <p class="subtitle">Interactive Molecular Gallery — 3Dmol.js</p>
+    <p class="affiliation">Salierno Lab · Computational Chemistry</p>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="gallery_molecules.html" class="active" aria-current="page">Gallery</a></li>
+        <li><a href="data.html">Data</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Molecular Gallery</h2>
+      <p>
+        Interactive 3D visualizations of key structures from the TFA₂HCF₃ study.
+        Explore reaction intermediates, solvation shells, and hydrogen‑bond networks
+        directly in your browser.
+      </p>
+    </section>
+
+    <div class="callout" role="note">
+      <p class="callout-title">📌 About these viewers</p>
+      <p>
+        PyMOL / VMD / OVITO are great for desktop ray-tracing but are not available in this
+        shareable snapshot and cannot embed as rotatable widgets on GitHub.
+        These pages use the same WebGL stick+sphere style as the PES molecule explorer.
+      </p>
+    </div>
+
+    <section class="viewer" aria-label="Interactive molecular viewers">
+      <div class="tabs" role="tablist" aria-label="Gallery views">
+        <button
+          class="tab active"
+          role="tab"
+          id="tab-stages"
+          data-tab="stages"
+          aria-selected="true"
+          aria-controls="panel-stages"
+        >
+          Reaction Stages <span class="badge">(5 views)</span>
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          id="tab-solv"
+          data-tab="solv"
+          aria-selected="false"
+          aria-controls="panel-solv"
+        >
+          Solvation Sizes <span class="badge">(3 views)</span>
+        </button>
+        <button
+          class="tab"
+          role="tab"
+          id="tab-hbond"
+          data-tab="hbond"
+          aria-selected="false"
+          aria-controls="panel-hbond"
+        >
+          H‑bonds (15w) <span class="badge">(1 view)</span>
+        </button>
+      </div>
+
+      <div class="panels">
+        <div
+          class="panel active"
+          role="tabpanel"
+          id="panel-stages"
+          aria-labelledby="tab-stages"
+        >
+          <div class="spinner" data-spinner>Loading…</div>
+          <iframe
+            title="Reaction stages"
+            data-src="molecule_viewer_stages.html"
+            src="about:blank"
+            loading="lazy"
+            allow="fullscreen"
+          ></iframe>
+        </div>
+
+        <div
+          class="panel"
+          role="tabpanel"
+          id="panel-solv"
+          aria-labelledby="tab-solv"
+          hidden
+        >
+          <div class="spinner" data-spinner>Loading…</div>
+          <iframe
+            title="Solvation sizes"
+            data-src="molecule_viewer_solvation.html"
+            src="about:blank"
+            loading="lazy"
+            allow="fullscreen"
+          ></iframe>
+        </div>
+
+        <div
+          class="panel"
+          role="tabpanel"
+          id="panel-hbond"
+          aria-labelledby="tab-hbond"
+          hidden
+        >
+          <div class="spinner" data-spinner>Loading…</div>
+          <iframe
+            title="H-bond cluster"
+            data-src="molecule_viewer_hbond.html"
+            src="about:blank"
+            loading="lazy"
+            allow="fullscreen"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Salierno Lab</p>
+    <p>Cite as: Salierno et al., J. Chem. Inf. Model. 2026, DOI: 10.1021/xxx</p>
+    <p>
+      <a href="https://github.com/glsalierno/TFA2HCF3">github.com/glsalierno/TFA2HCF3</a>
+    </p>
+    <p>Last updated: August 2026</p>
+  </footer>
+
+  <script>
+    (function () {
+      const tabs = Array.from(document.querySelectorAll(".tab"));
+      const panels = Array.from(document.querySelectorAll(".panel"));
+
+      function loadPanel(panel) {
+        const iframe = panel.querySelector("iframe");
+        const spinner = panel.querySelector("[data-spinner]");
+        if (!iframe) return;
+
+        const target = iframe.getAttribute("data-src");
+        if (!target) return;
+
+        const current = iframe.getAttribute("src") || "";
+        const needsLoad =
+          !current || current === "about:blank" || current !== target;
+
+        if (!needsLoad) {
+          if (spinner) spinner.classList.add("hidden");
+          return;
+        }
+
+        if (spinner) spinner.classList.remove("hidden");
+
+        const onLoad = function () {
+          if (spinner) spinner.classList.add("hidden");
+          iframe.removeEventListener("load", onLoad);
+        };
+        iframe.addEventListener("load", onLoad);
+        iframe.src = target;
+      }
+
+      function activateTab(tab) {
+        const id = tab.getAttribute("data-tab");
+        tabs.forEach(function (btn) {
+          const on = btn === tab;
+          btn.classList.toggle("active", on);
+          btn.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        panels.forEach(function (panel) {
+          const on = panel.id === "panel-" + id;
+          panel.classList.toggle("active", on);
+          if (on) {
+            panel.removeAttribute("hidden");
+            loadPanel(panel);
+          } else {
+            panel.setAttribute("hidden", "");
+          }
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          activateTab(tab);
+        });
+        tab.addEventListener("keydown", function (ev) {
+          const i = tabs.indexOf(tab);
+          if (ev.key === "ArrowRight" || ev.key === "ArrowLeft") {
+            ev.preventDefault();
+            const next =
+              ev.key === "ArrowRight"
+                ? tabs[(i + 1) % tabs.length]
+                : tabs[(i - 1 + tabs.length) % tabs.length];
+            next.focus();
+            activateTab(next);
+          }
+        });
+      });
+
+      // Initial state: first tab active, load first iframe immediately
+      const initial = tabs.find(function (t) {
+        return t.classList.contains("active");
+      }) || tabs[0];
+      if (initial) activateTab(initial);
+    })();
+  </script>
 </body>
 </html>

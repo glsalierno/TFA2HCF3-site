@@ -1,82 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TFA2HCF3 — interactive publication site</title>
-<style>
-  :root {
-    --bg: #f7f4ef; --ink: #1a1a1a; --muted: #555; --card: #fff;
-    --line: #ddd; --accent: #143d2b; --accent2: #2a6f4e;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-    background: var(--bg); color: var(--ink); line-height: 1.5;
-  }
-  header {
-    background: var(--accent); color: #fff; padding: 1.5rem 1.25rem 1.25rem;
-  }
-  header h1 { margin: 0 0 0.35rem; font-size: 1.45rem; }
-  header p { margin: 0; opacity: 0.92; max-width: 42rem; }
-  main { max-width: 52rem; margin: 0 auto; padding: 1.25rem; }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 1rem 1.15rem; margin: 0.85rem 0;
-  }
-  .card h2 { margin: 0 0 0.4rem; font-size: 1.1rem; color: var(--accent); }
-  .card p { margin: 0 0 0.75rem; color: var(--muted); font-size: 0.95rem; }
-  a.btn {
-    display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-    padding: 0.55rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
-  }
-  a.btn:hover { background: var(--accent2); }
-  a.btn.secondary {
-    background: #fff; color: var(--accent); border: 1px solid var(--accent);
-  }
-  .row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  footer { color: var(--muted); font-size: 0.85rem; padding: 1rem 1.25rem 2rem; text-align: center; }
-  code { font-size: 0.88em; background: #eee; padding: 0.1em 0.35em; border-radius: 4px; }
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>TFA₂HCF₃ — Home</title>
+  <meta name="description" content="Interactive publication site for the TFA₂HCF₃ computational chemistry project."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="gallery.css"/>
 </head>
 <body>
-<header>
-  <h1>TFA2HCF3 — interactive site</h1>
-  <p>
-    CF₃COOH → CF₃H + CO₂ · drag-to-rotate molecular viewers and PES explorers
-    hosted at glsalierno.github.io/TFA2HCF3-site (READMEs cannot embed WebGL).
-  </p>
-</header>
-<main>
-  <div class="card">
-    <h2>Interactive molecules (3Dmol.js)</h2>
-    <p>Stick + sphere (Jmol). Drag to rotate · scroll to zoom.</p>
-    <div class="row">
-      <a class="btn" href="gallery_molecules.html">Open molecule gallery</a>
-      <a class="btn secondary" href="molecule_viewer_stages.html">Reaction stages</a>
-      <a class="btn secondary" href="molecule_viewer_solvation.html">Solvation sizes</a>
-      <a class="btn secondary" href="molecule_viewer_hbond.html">H-bonds (15w)</a>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">🧪</span>
+      <h1>TFA₂HCF₃ Project</h1>
     </div>
-  </div>
-  <div class="card">
-    <h2>3D PES explorer</h2>
-    <p>Interactive surface for the published C–C × O–H plane (when present).</p>
-    <div class="row">
-      <a class="btn" href="tfa_pes_3d_interactive.html">Open 3D PES</a>
-      <a class="btn secondary" href="dashboard.html">Dashboard</a>
+    <p class="subtitle">CF₃COOH → CF₃H + CO₂ · interactive publication site</p>
+    <p class="affiliation">Salierno Lab · Computational Chemistry</p>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="methods.html">Methods</a></li>
+        <li><a href="gallery_molecules.html">Gallery</a></li>
+        <li><a href="data.html">Data</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Welcome</h2>
+      <p>
+        Drag-to-rotate molecular viewers and PES explorers for the trifluoroacetic acid
+        decarboxylation study. Start with the interactive gallery.
+      </p>
+    </section>
+    <div class="callout">
+      <p class="callout-title">📌 Open the gallery</p>
+      <p>
+        <a href="gallery_molecules.html">Interactive molecular gallery</a>
+        · <a href="tfa_pes_3d_interactive.html">3D PES explorer</a>
+        · <a href="dashboard.html">Dashboard</a>
+      </p>
     </div>
-  </div>
-  <div class="card">
-    <h2>Source repository</h2>
-    <p>Code, data, and dry-run pipeline live on GitHub.</p>
-    <div class="row">
-      <a class="btn secondary" href="https://github.com/glsalierno/TFA2HCF3" title="private source repo">github.com/glsalierno/TFA2HCF3</a>
-    </div>
-  </div>
-</main>
-<footer>
-  Private Pages are visible to collaborators with repo access.
-  Rebuild viewers locally with <code>python scripts/generate_molecule_viewers.py</code>.
-</footer>
+  </main>
+  <footer class="site-footer">
+    <p>© 2026 Salierno Lab</p>
+    <p><a href="https://github.com/glsalierno/TFA2HCF3">github.com/glsalierno/TFA2HCF3</a></p>
+    <p>Last updated: August 2026</p>
+  </footer>
 </body>
 </html>
