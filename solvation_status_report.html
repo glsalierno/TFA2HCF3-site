@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Solvation status — TFA2HCF3</title>
+<style>
+ body { font-family: DejaVu Sans, Helvetica, Arial, sans-serif; margin: 2rem; }
+ h1 { font-size: 1.5rem; }
+ .lead { background:#eef6fb; border-left:4px solid #0072B2; padding:0.8rem 1rem; }
+ .si { background:#fff8e8; border-left:4px solid #E69F00; padding:0.8rem 1rem; }
+ table { border-collapse: collapse; margin: 0.6rem 0 1.2rem; }
+ th, td { border: 1px solid #ccc; padding: 0.35rem 0.55rem; font-size: 0.9rem; }
+ .ok { color: #009E73; } .miss { color: #888; }
+</style></head><body>
+<h1>Solvation status report</h1>
+<p>Generated 2026-08-08 13:35 UTC</p>
+
+<div class="lead">
+<strong>Primary claim:</strong> solvation on the <em>same</em> 2D / multi-coordinate
+PES planes as gas-phase work (<code>cc_ch</code>, <code>oh_ch</code>), not only
+1D C–C / R–TS barriers vs <em>n</em>(H₂O).
+<br/><em>Continuum (and optional microsolvation) 2D PES in H-transfer coordinates;
+large droplets remain 1D.</em>
+</div>
+
+<h2>Tier A — CPCM on gas 2D PES</h2>
+<table>
+<tr><th>pair</th><th>status</th><th>n_ok</th><th>n_total</th><th>ΔĒ (kcal/mol)</th></tr>
+<tr><td><code>cc_ch</code></td><td>OK</td><td>—</td><td>72</td><td>—</td></tr>
+<tr><td><code>oh_ch</code></td><td>OK</td><td>—</td><td>56</td><td>—</td></tr>
+</table>
+<p>Expected figures:</p>
+<ul><li class='miss'><code>publication/figures/pes2d_cpcm_cc_ch_triplet.pdf</code> — not yet</li><li class='miss'><code>publication/figures/pes2d_cpcm_cc_ch_delta.pdf</code> — not yet</li><li class='miss'><code>publication/figures/pes2d_cpcm_oh_ch_triplet.pdf</code> — not yet</li><li class='miss'><code>publication/figures/pes2d_cpcm_oh_ch_delta.pdf</code> — not yet</li></ul>
+
+<h2>Tier B — sparse cluster dual-constraint 2D</h2>
+<table>
+<tr><th>pair</th><th>status</th><th>n_ok</th><th>n_total</th><th>notes</th></tr>
+<tr><td><code>cc_ch</code></td><td>OK</td><td>—</td><td>9</td><td>—</td></tr>
+</table>
+<ul><li class='miss'><code>publication/figures/pes2d_cluster_5w_cc_ch.pdf</code> — not yet</li><li class='miss'><code>publication/figures/pes2d_cluster_15w_cc_ch.pdf</code> — not yet</li></ul>
+
+<h2>Tier C / SI — 1D barrier vs n(H₂O) (validation only)</h2>
+<div class="si">
+These rows are the <strong>legacy aerosol / microsolvation ladder</strong>.
+They support convergence checks; they are <strong>not</strong> the lead solvation figure.
+</div>
+<table>
+<tr><th>label</th><th>n(H₂O)</th><th>method</th><th>barrier (kcal/mol)</th></tr>
+<tr><td>Gas</td><td>0</td><td>DLPNO-CCSD(T)/TZVP</td><td>79.26</td></tr>
+<tr><td>5w DFT</td><td>5</td><td>B3LYP-D4/def2-SVP</td><td>52.75</td></tr>
+<tr><td>15w DFT</td><td>15</td><td>B3LYP-D4/def2-SVP (pure DFT)</td><td>49.61</td></tr>
+<tr><td>15w DFT/TZVP</td><td>15</td><td>B3LYP-D4/def2-TZVP (pure DFT, --high)</td><td>39.86</td></tr>
+<tr><td>15w CCSD(T)</td><td>15</td><td>DLPNO-CCSD(T) RI-MP2 def2-TZVP def2-TZVP/C TightPNO TightSCF</td><td>41.85</td></tr>
+<tr><td>100w QM/MM</td><td>100</td><td>QM/MM B3LYP-D4/def2-SVP // TIP3P</td><td>67.30</td></tr>
+<tr><td>100w QM/MM/TZVP</td><td>100</td><td>QM/MM ωB97X-D3/def2-TZVP // TIP3P</td><td>64.31</td></tr>
+</table>
+<ul><li class='ok'><code>publication/figures/solvation_convergence.pdf</code></li><li class='ok'><code>data/processed/solvation_convergence.json</code></li></ul>
+
+<h2>Do not clobber</h2>
+<ul>
+<li>Gas <code>jobs/pes2d_*</code> outs / <code>results/pes2d_matrix.npz</code></li>
+<li><code>results/cluster_barriers*.json</code> / <code>qmmm_barriers*.json</code></li>
+</ul>
+
+<p>See <a href="../docs/solvation_2d_pes.md">docs/solvation_2d_pes.md</a> ·
+<a href="si/README_SI.md">SI README</a>.</p>
+</body></html>

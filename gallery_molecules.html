@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TFA2HCF3 — interactive molecules</title>
+<style>
+  :root { --bg:#f7f4ef; --ink:#1a1a1a; --muted:#555; --card:#fff; --line:#ddd; --accent:#143d2b; }
+  body { margin:0; font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--ink); }
+  header { background:var(--accent); color:#fff; padding:1rem 1.25rem; }
+  header h1 { margin:0 0 .35rem; font-size:1.3rem; }
+  header p { margin:0; opacity:.92; }
+  .tabs { display:flex; gap:.4rem; flex-wrap:wrap; padding:.75rem 1rem 0; }
+  .tab { border:1px solid var(--line); background:#fff; padding:.45rem .9rem; border-radius:999px; cursor:pointer; font-size:.92rem; }
+  .tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .panel { display:none; padding:.75rem 1rem 1.25rem; }
+  .panel.active { display:block; }
+  iframe { width:100%; min-height:560px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+  .note { color:var(--muted); max-width:50rem; padding:0 1rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>TFA2HCF3 — interactive molecular gallery</h1>
+  <p>3Dmol.js ball-and-stick (not matplotlib) · rotate / zoom in the browser</p>
+</header>
+<p class="note">
+  PyMOL / VMD / OVITO are great for desktop ray-tracing but are not available in this
+  shareable snapshot and cannot embed as rotatable widgets on GitHub.
+  These pages use the same WebGL stick+sphere style as the PES molecule explorer.
+</p>
+<div class="tabs">
+  <button class="tab active" data-tab="stages">Reaction stages</button>
+  <button class="tab" data-tab="solv">Solvation sizes</button>
+  <button class="tab" data-tab="hbond">H-bonds (15w)</button>
+</div>
+<section id="stages" class="panel active">
+  <iframe src="molecule_viewer_stages.html" title="Reaction stages"></iframe>
+</section>
+<section id="solv" class="panel">
+  <iframe src="molecule_viewer_solvation.html" title="Solvation sizes"></iframe>
+</section>
+<section id="hbond" class="panel">
+  <iframe src="molecule_viewer_hbond.html" title="H-bond cluster"></iframe>
+</section>
+<script>
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

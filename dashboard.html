@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>TFA2HCF3 dashboard</title>
+<style>
+  body { font-family: DejaVu Sans, Helvetica, Arial, sans-serif; margin: 2rem; color: #222; }
+  h1 { font-size: 1.6rem; }
+  h2 { margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 0.3rem; }
+  h3 { color: #444; }
+  .lead { background: #f4f8fb; border-left: 4px solid #0072B2; padding: 0.8rem 1rem; }
+  .si { background: #faf7f2; border-left: 4px solid #E69F00; padding: 0.8rem 1rem; }
+  .grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .card { width: 320px; margin: 0; }
+  .card img { width: 100%; border: 1px solid #ccc; background: #fff; }
+  figcaption { font-size: 0.85rem; color: #555; }
+  table { border-collapse: collapse; margin: 0.5rem 0 1rem; }
+  th, td { border: 1px solid #ccc; padding: 0.35rem 0.6rem; font-size: 0.9rem; }
+  .note { color: #666; font-size: 0.9rem; }
+  code { background: #f0f0f0; padding: 0.1rem 0.3rem; }
+</style>
+</head>
+<body>
+<h1>TFA2HCF3 — PES / solvation dashboard</h1>
+<p class="note">Generated 2026-08-08 13:35 UTC. Figures appear when files exist (CPCM/cluster jobs may still be running).</p>
+
+<div class="lead">
+<strong>Lead solvation story:</strong> continuum (CPCM) and optional microsolvation on the
+<strong>same H-transfer 2D planes</strong> as the gas grids (<code>cc_ch</code>, <code>oh_ch</code>).
+Large QM/MM droplets remain <strong>1D</strong> (SI aerosol ladder).
+</div>
+
+<h2>Solvation on H-transfer 2D PES</h2>
+<p>Methods sentence:
+<em>Continuum (and optional microsolvation) 2D PES in H-transfer coordinates;
+large droplets remain 1D.</em></p>
+
+<h3>Tier A — CPCM on gas 2D grids</h3>
+<table><tr><th>pair</th><th>status</th><th>n_ok / n_total</th><th>notes</th></tr>
+<tr><td><code>cc_ch</code></td><td>OK</td><td>— / 72</td><td>inputs prepared / ORCA running</td></tr>
+<tr><td><code>oh_ch</code></td><td>OK</td><td>— / 56</td><td>inputs prepared / ORCA running</td></tr>
+</table>
+<div class="grid">
+<p class='note'>No CPCM triplet/ΔE figures yet — run <code>generate_cpcm_2d_pes.py --run</code> then <code>--plot-only</code>.</p>
+</div>
+
+<h3>Tier B — sparse cluster dual-constraint 2D</h3>
+<table><tr><th>pair</th><th>status</th><th>n_ok / n_total</th><th>notes</th></tr>
+<tr><td><code>cc_ch</code></td><td>OK</td><td>— / 9</td><td>inputs prepared / ORCA running</td></tr>
+</table>
+<div class="grid">
+<p class='note'>No cluster 2D figures yet — run <code>run_cluster_2d_pes.py --smoke --run</code>.</p>
+</div>
+<p><a href='solvation_status_report.html'>Open solvation status report</a></p>
+
+<h2>Gas-phase 2D PES (reference)</h2>
+<div class="grid"><figure class='card'><img src='figures/pes2d_cc_ch.png' alt='Gas 2D — C–C × C0–H'/><figcaption>Gas 2D — C–C × C0–H</figcaption></figure><figure class='card'><img src='figures/pes2d_oh_ch.png' alt='Gas 2D — O–H × C0–H'/><figcaption>Gas 2D — O–H × C0–H</figcaption></figure><figure class='card'><img src='figures/pes2d_alt_all.png' alt='Gas alternate PES multipanel'/><figcaption>Gas alternate PES multipanel</figcaption></figure><figure class='card'><img src='figures/pes_2d_cc_oh.png' alt='Gas published C–C × O–H'/><figcaption>Gas published C–C × O–H</figcaption></figure><figure class='card'><img src='figures/tfa_pes_contour.png' alt='Pipeline contour (CC×OH)'/><figcaption>Pipeline contour (CC×OH)</figcaption></figure></div>
+
+<h2>SI — 1D barrier vs n(H₂O) / path projections</h2>
+<div class="si">
+Legacy <code>solvation_scan</code> / overlap / barrier-vs-<em>n</em> figures are
+<strong>validation baselines</strong>, not the primary paper solvation claim.
+See <a href='si/README_SI.md'>publication/si/README_SI.md</a>.
+</div>
+<div class="grid"><figure class='card'><img src='figures/solvation_convergence.png' alt='SI — 1D barrier vs n(H₂O)'/><figcaption>SI — 1D barrier vs n(H₂O)</figcaption></figure><figure class='card'><img src='figures/path_other_dimensions.png' alt='Path projections (all planes)'/><figcaption>Path projections (all planes)</figcaption></figure></div>
+
+</body>
+</html>
