@@ -4,7 +4,7 @@ Interactive publication site for the **TFA₂HCF₃** computational chemistry pr
 
 **Live site:** [https://glsalierno.github.io/TFA2HCF3-site/](https://glsalierno.github.io/TFA2HCF3-site/)
 
-**Sister repo (code & data toolkit):** [https://github.com/glsalierno/TFA2HCF3](https://github.com/glsalierno/TFA2HCF3)
+The analysis code is in a private repository.
 
 ## Deploy (GitHub Pages)
 
